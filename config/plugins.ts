@@ -28,7 +28,10 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
     config: {
       jwtManagement: 'refresh',
       sessions: {
-        httpOnly: false,
+        httpOnly: true,
+        cookie: {
+          secure: false,
+        },
       },
     },
   },
