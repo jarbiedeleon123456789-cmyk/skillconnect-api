@@ -176,8 +176,27 @@ async function seedCollection(model, entries, uniqueField) {
       filters: { [uniqueField]: entry[uniqueField] },
     });
     if (!existing) {
-      await strapi.documents(`api::${model}.${model}`).create({ data: entry, status: 'published' });
+      const data = { ...entry };
+      if (model === 'request' && entry.workerName) {
+        const worker = await strapi.query('plugin::users-permissions.user').findOne({
+          where: { email: 'ramon@skillconnect.ph' },
+        });
+        if (worker) data.workerId = String(worker.id);
+        data.status = 'accepted';
+      }
+      await strapi.documents(`api::${model}.${model}`).create({ data, status: 'published' });
       console.log(`Created ${model}: ${entry[uniqueField]}`);
+    } else if (model === 'request' && entry.workerName && !existing.workerId) {
+      const worker = await strapi.query('plugin::users-permissions.user').findOne({
+        where: { email: 'ramon@skillconnect.ph' },
+      });
+      if (worker) {
+        await strapi.documents(`api::${model}.${model}`).update(existing.documentId, {
+          data: { workerId: String(worker.id), status: 'accepted' },
+          status: 'published',
+        });
+        console.log(`Assigned ${model}: ${entry[uniqueField]}`);
+      }
     }
   }
 }
