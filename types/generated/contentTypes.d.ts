@@ -703,6 +703,7 @@ export interface ApiRequestRequest extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    customerId: Schema.Attribute.String;
     customerName: Schema.Attribute.String & Schema.Attribute.Required;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     lat: Schema.Attribute.Decimal;
@@ -718,12 +719,17 @@ export interface ApiRequestRequest extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     rating: Schema.Attribute.Integer;
     skillNeeded: Schema.Attribute.String & Schema.Attribute.Required;
+    status: Schema.Attribute.Enumeration<
+      ['pending', 'accepted', 'working', 'completed', 'cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'pending'>;
     ticketId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    workerId: Schema.Attribute.String;
     workerName: Schema.Attribute.String;
   };
 }

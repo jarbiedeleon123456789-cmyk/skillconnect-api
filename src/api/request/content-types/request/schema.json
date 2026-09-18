@@ -44,6 +44,23 @@
     "workerName": {
       "type": "string"
     },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "accepted",
+        "working",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "customerId": {
+      "type": "string"
+    },
+    "workerId": {
+      "type": "string"
+    },
     "photos": {
       "type": "json"
     },
