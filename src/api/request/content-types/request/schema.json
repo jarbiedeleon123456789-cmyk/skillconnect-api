@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "requests",
+  "info": {
+    "singularName": "request",
+    "pluralName": "requests",
+    "displayName": "Request"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": false
+    }
+  },
+  "attributes": {
+    "ticketId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "customerName": {
+      "type": "string",
+      "required": true
+    },
+    "barangay": {
+      "type": "string"
+    },
+    "contactNumber": {
+      "type": "string"
+    },
+    "skillNeeded": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "preferredDate": {
+      "type": "date"
+    },
+    "workerName": {
+      "type": "string"
+    },
+    "photos": {
+      "type": "json"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "lat": {
+      "type": "decimal"
+    },
+    "lng": {
+      "type": "decimal"
+    }
+  }
+}

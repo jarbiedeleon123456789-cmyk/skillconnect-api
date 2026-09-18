@@ -68,6 +68,18 @@ const residents = [
   },
 ];
 
+const admins = [
+  {
+    email: 'admin@skillconnect.ph',
+    password: 'admin123',
+    name: 'Kagawad Elena Torres',
+    phone: '0917 000 0000',
+    barangay: 'Guinobatan',
+    role: 'admin',
+    initials: 'KE',
+  },
+];
+
 const requests = [
   {
     ticketId: 'SC-2481',
@@ -123,7 +135,7 @@ async function findByEmail(email) {
 }
 
 async function seedCustomUsers() {
-  for (const user of [...workers, ...residents]) {
+  for (const user of [...workers, ...residents, ...admins]) {
     if (!(await findByEmail(user.email))) {
       await strapi.documents('api::user.user').create({ data: user, status: 'published' });
       console.log(`Created profile: ${user.email}`);
@@ -135,7 +147,7 @@ async function seedAuthUsers() {
   const authService = strapi.plugin('users-permissions').service('user');
   const role = await strapi.query('plugin::users-permissions.role').findOne({ where: { type: 'authenticated' } });
 
-  for (const user of [...workers, ...residents]) {
+  for (const user of [...workers, ...residents, ...admins]) {
     const existing = await strapi.query('plugin::users-permissions.user').findOne({ where: { email: user.email } });
     if (!existing) {
       await authService.add({

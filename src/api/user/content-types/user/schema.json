@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users",
+  "info": {
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": false
+    }
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "barangay": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "default": "customer",
+      "enum": [
+        "customer",
+        "worker",
+        "admin"
+      ]
+    },
+    "skillCategory": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "initials": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "jobs": {
+      "type": "integer"
+    },
+    "availability": {
+      "type": "enumeration",
+      "default": "offline",
+      "enum": [
+        "available",
+        "busy",
+        "offline"
+      ]
+    },
+    "certificates": {
+      "type": "json"
+    },
+    "works": {
+      "type": "json"
+    },
+    "lat": {
+      "type": "decimal"
+    },
+    "lng": {
+      "type": "decimal"
+    }
+  }
+}
